@@ -116,7 +116,61 @@
     window.addEventListener('resize', resize, { passive: true });
   };
 
-  // Carrega quando o navegador estiver livre; fallback curto para compatibilidade
-  if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 1200 });
-  else setTimeout(start, 250);
+  // Fallback Canvas 2D para navegadores com WebGL desativado
+  const start2D = () => {
+    document.querySelector('.network-3d')?.remove();
+    const layer = document.createElement('div');
+    layer.className = 'network-3d network-fallback';
+    layer.setAttribute('aria-hidden', 'true');
+    const canvas = document.createElement('canvas');
+    layer.appendChild(canvas);
+    hero.prepend(layer);
+    const ctx = canvas.getContext('2d');
+    const count = mobile ? 34 : 68;
+    const nodes = Array.from({ length: count }, () => ({
+      x: Math.random(), y: Math.random(), vx: (Math.random() - .5) * .00013,
+      vy: (Math.random() - .5) * .00013, pulse: 0
+    }));
+    let visible = true;
+    new IntersectionObserver(([e]) => visible = e.isIntersecting).observe(hero);
+    const resize = () => {
+      const ratio = Math.min(devicePixelRatio, 1.5);
+      canvas.width = hero.clientWidth * ratio; canvas.height = hero.clientHeight * ratio;
+      canvas.style.width = hero.clientWidth + 'px'; canvas.style.height = hero.clientHeight + 'px';
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    };
+    resize(); window.addEventListener('resize', resize, { passive: true });
+    if (!touch) layer.addEventListener('pointerdown', e => {
+      const r = layer.getBoundingClientRect();
+      let nearest = nodes[0], best = Infinity;
+      nodes.forEach(n => { const d = Math.hypot(n.x*r.width-(e.clientX-r.left),n.y*r.height-(e.clientY-r.top)); if(d<best){best=d;nearest=n;} });
+      nearest.pulse = 1;
+    });
+    const draw = () => {
+      requestAnimationFrame(draw); if (!visible) return;
+      const w = hero.clientWidth, h = hero.clientHeight;
+      ctx.clearRect(0, 0, w, h);
+      nodes.forEach(n => {
+        n.x += n.vx; n.y += n.vy;
+        if(n.x<0||n.x>1)n.vx*=-1;if(n.y<0||n.y>1)n.vy*=-1;
+        n.pulse = Math.max(0, n.pulse - .012);
+      });
+      for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i],b=nodes[j],dx=(a.x-b.x)*w,dy=(a.y-b.y)*h,dist=Math.hypot(dx,dy);
+        if(dist<145){ctx.strokeStyle='rgba(30,150,255,'+((1-dist/145)*.28)+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.x*w,a.y*h);ctx.lineTo(b.x*w,b.y*h);ctx.stroke();
+          if(a.pulse>.75)b.pulse=Math.max(b.pulse,a.pulse-.05);
+        }
+      }
+      nodes.forEach(n=>{ctx.fillStyle=n.pulse>0?'#b8ff46':'#52d9ff';ctx.shadowBlur=n.pulse>0?18:8;ctx.shadowColor=ctx.fillStyle;ctx.beginPath();ctx.arc(n.x*w,n.y*h,n.pulse>0?3.8:2.1,0,Math.PI*2);ctx.fill();});
+      ctx.shadowBlur=0;
+    };
+    draw();
+  };
+  const boot = () => start().catch(error => {
+    console.warn('WebGL indisponível; usando rede 2D.', error);
+    start2D();
+  });
+  // Carrega quando o navegador estiver livre
+  if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 1200 });
+  else setTimeout(boot, 250);
 })();

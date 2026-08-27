@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sistema de Chamados Help Desk desenvolvido em MySQL 8.0 por Júlio César Carvalho Martins, com modelagem MER, PK/FK e 11 consultas SQL.">
+  <meta name="theme-color" content="#07111f">
+  <title>Sistema de Chamados | Júlio César</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=13">
+  <style>
+    .project-page{padding:120px 0 80px}.project-hero{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center;margin-bottom:56px}.project-kicker{font-size:.78rem;letter-spacing:.16em;font-weight:700;color:#ff4343}.project-hero h1{font-size:clamp(2.5rem,6vw,5rem);line-height:.95;margin:10px 0 18px}.project-hero p{font-size:1.08rem;line-height:1.75;max-width:780px;color:var(--muted)}.project-mark{min-height:300px;border:1px solid var(--border);border-radius:28px;background:linear-gradient(145deg,#5a0000,#e10b0b);display:grid;place-items:center;position:relative;overflow:hidden}.project-mark:before,.project-mark:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.18);border-radius:50%}.project-mark:before{width:260px;height:260px}.project-mark:after{width:190px;height:190px}.project-mark img{width:120px;position:relative;z-index:1;filter:drop-shadow(0 12px 26px rgba(0,0,0,.35))}.project-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.stats-grid,.detail-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.stat-card,.detail-card,.query-card{border:1px solid var(--border);background:var(--surface);border-radius:20px;padding:24px}.stat-card strong{display:block;font-size:2rem;margin-bottom:4px}.stat-card span,.detail-card p,.query-card p{color:var(--muted);line-height:1.6}.project-section{margin-top:56px}.project-section h2{font-size:2rem;margin-bottom:22px}.detail-grid{grid-template-columns:repeat(2,1fr)}.detail-card h3{margin:0 0 10px}.tech-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.tech-row span{border:1px solid var(--border);border-radius:999px;padding:8px 12px;font-size:.9rem}.entity-list{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.entity-list span{padding:14px 16px;border:1px solid var(--border);background:var(--surface);border-radius:14px;text-align:center;font-weight:600}.query-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.query-card b{display:block;margin-bottom:8px}.back-link{display:inline-flex;align-items:center;gap:8px;margin-bottom:28px;color:inherit;text-decoration:none}.back-link:hover{text-decoration:underline}@media(max-width:900px){.project-hero,.detail-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}.entity-list{grid-template-columns:repeat(2,1fr)}.query-grid{grid-template-columns:1fr 1fr}}@media(max-width:620px){.stats-grid,.entity-list,.query-grid{grid-template-columns:1fr}.project-page{padding-top:96px}.project-mark{min-height:220px}}
+  </style>
+</head>
+<body>
+  <header class="site-header"><nav class="navbar container" aria-label="Navegação principal"><a class="brand" href="index.html#inicio">Júlio César</a><div class="nav-menu"><a href="index.html#projetos">Projetos</a><a href="index.html#contato">Contato</a></div></nav></header>
+  <main class="project-page">
+    <div class="container">
+      <a class="back-link" href="index.html#projetos">← Voltar para projetos</a>
+      <section class="project-hero">
+        <div>
+          <span class="project-kicker">HELP DESK • BANCO DE DADOS</span>
+          <h1>Sistema de Chamados</h1>
+          <p>Projeto de Help Desk desenvolvido em MySQL 8.0 para representar o fluxo de abertura e atendimento de chamados. O banco relaciona setores, funcionários, chamados, categorias, prioridades, status, técnicos e atendimentos, com modelagem conceitual e lógica, chaves PK/FK e consultas SQL para análise e acompanhamento.</p>
+          <div class="tech-row"><span>MySQL 8.0</span><span>SQL</span><span>MER</span><span>Modelo Lógico</span><span>PK/FK</span><span>INNER JOIN</span><span>LEFT JOIN</span></div>
+          <div class="project-actions"><a class="button primary" href="index.html#contato">Falar comigo <span>↗</span></a><a class="button secondary" href="index.html#projetos">Ver outros projetos</a></div>
+        </div>
+        <div class="project-mark"><img src="logo-sistema-chamados.svg" alt="Logo do Sistema de Chamados"></div>
+      </section>
+
+      <section class="stats-grid" aria-label="Resumo técnico do projeto">
+        <article class="stat-card"><strong>8</strong><span>tabelas relacionadas</span></article>
+        <article class="stat-card"><strong>8</strong><span>chaves primárias</span></article>
+        <article class="stat-card"><strong>7</strong><span>chaves estrangeiras</span></article>
+        <article class="stat-card"><strong>11</strong><span>consultas SQL documentadas</span></article>
+      </section>
+
+      <section class="project-section">
+        <h2>Estrutura do banco</h2>
+        <div class="entity-list"><span>SETOR</span><span>FUNCIONÁRIO</span><span>CATEGORIA</span><span>PRIORIDADE</span><span>STATUS_CHAMADO</span><span>CHAMADO</span><span>TÉCNICO</span><span>ATENDIMENTO</span></div>
+      </section>
+
+      <section class="project-section">
+        <h2>O que foi aplicado</h2>
+        <div class="detail-grid">
+          <article class="detail-card"><h3>Modelagem de dados</h3><p>Construção do MER e do modelo lógico, com relacionamentos 1:N e definição das entidades, atributos e cardinalidades.</p></article>
+          <article class="detail-card"><h3>Integridade relacional</h3><p>Uso de chaves primárias e estrangeiras, AUTO_INCREMENT, NOT NULL e DEFAULT para estruturar e relacionar os dados.</p></article>
+          <article class="detail-card"><h3>Fluxo de Help Desk</h3><p>O modelo permite identificar quem abriu o chamado, setor do funcionário, categoria, prioridade, status e técnico responsável pelo atendimento.</p></article>
+          <article class="detail-card"><h3>Dados de teste</h3><p>O banco foi populado com funcionários, técnicos, chamados e atendimentos para validar relacionamentos e consultas no MySQL Workbench.</p></article>
+        </div>
+      </section>
+
+      <section class="project-section">
+        <h2>Consultas SQL desenvolvidas</h2>
+        <div class="query-grid">
+          <article class="query-card"><b>SELECT + WHERE</b><p>Listagem de chamados e filtros por status.</p></article>
+          <article class="query-card"><b>ORDER BY</b><p>Ordenação de funcionários em ordem alfabética.</p></article>
+          <article class="query-card"><b>GROUP BY + COUNT</b><p>Contagem de chamados por categoria.</p></article>
+          <article class="query-card"><b>SUM + AVG</b><p>Total geral e média de chamados por funcionário.</p></article>
+          <article class="query-card"><b>MAX + MIN</b><p>Maior e menor quantidade de chamados por categoria.</p></article>
+          <article class="query-card"><b>INNER / LEFT JOIN</b><p>Visões relacionando chamados, funcionários, setores, categorias, prioridades, status, técnicos e atendimentos.</p></article>
+        </div>
+      </section>
+
+      <section class="project-section">
+        <h2>Resultado</h2>
+        <div class="detail-card"><p>O projeto foi implementado e testado no MySQL Workbench. O banco <strong>sistema_chamados</strong>, as tabelas, dados, chaves estrangeiras e consultas foram validados sem erros, permitindo visualizar o fluxo completo de cada chamado.</p></div>
+      </section>
+    </div>
+  </main>
+  <footer><div class="container footer-inner"><div><a class="brand" href="index.html#inicio">Júlio César</a><p>Suporte, infraestrutura, dados e desenvolvimento.</p></div><div class="footer-links"><a href="index.html#projetos">Projetos</a><a href="https://github.com/juliocesarcarvalhomartins" target="_blank" rel="noreferrer">GitHub</a></div><p>© 2026 Júlio César Carvalho Martins</p></div></footer>
+</body>
+</html>

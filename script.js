@@ -72,12 +72,23 @@ if (helpDeskCard) {
   if (status) status.textContent = '8 tabelas • 7 relacionamentos FK • 11 consultas SQL';
 
   const body = helpDeskCard.querySelector('.project-body');
-  if (body && !body.querySelector('.project-link')) {
-    const link = document.createElement('a');
-    link.className = 'project-link';
-    link.href = 'sistema-de-chamados.html';
-    link.innerHTML = 'Ver projeto completo <span>↗</span>';
-    body.appendChild(link);
+  if (body) {
+    const oldLink = body.querySelector('.project-link');
+    if (oldLink) oldLink.remove();
+
+    const detailsLink = document.createElement('a');
+    detailsLink.className = 'project-link';
+    detailsLink.href = 'sistema-de-chamados.html';
+    detailsLink.innerHTML = 'Ver projeto completo <span>↗</span>';
+    body.appendChild(detailsLink);
+
+    const githubLink = document.createElement('a');
+    githubLink.className = 'project-link';
+    githubLink.href = 'https://github.com/juliocesarcarvalhomartins/sistema-de-chamados-helpdesk';
+    githubLink.target = '_blank';
+    githubLink.rel = 'noreferrer';
+    githubLink.innerHTML = 'Ver no GitHub <span>↗</span>';
+    body.appendChild(githubLink);
   }
 }
 

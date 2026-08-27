@@ -60,6 +60,27 @@ filterButtons.forEach(button => button.addEventListener('click', () => {
   });
 }));
 
+// Apresentação profissional do projeto Sistema de Chamados.
+const helpDeskCard = document.querySelector('.project-card[data-category="database"]');
+if (helpDeskCard) {
+  const description = helpDeskCard.querySelector('.project-body > p');
+  if (description) {
+    description.textContent = 'Sistema de Help Desk com banco de dados relacional em MySQL 8.0. Estrutura com 8 tabelas para gerenciar funcionários, chamados, categorias, prioridades, status, técnicos e atendimentos.';
+  }
+
+  const status = helpDeskCard.querySelector('.project-status');
+  if (status) status.textContent = '8 tabelas • 7 relacionamentos FK • 11 consultas SQL';
+
+  const body = helpDeskCard.querySelector('.project-body');
+  if (body && !body.querySelector('.project-link')) {
+    const link = document.createElement('a');
+    link.className = 'project-link';
+    link.href = 'sistema-de-chamados.html';
+    link.innerHTML = 'Ver projeto completo <span>↗</span>';
+    body.appendChild(link);
+  }
+}
+
 document.querySelector('#contact-form').addEventListener('submit', event => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);

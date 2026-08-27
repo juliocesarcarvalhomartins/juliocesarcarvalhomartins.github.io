@@ -1,3 +1,20 @@
+const root = document.documentElement;
+const themeButton = document.querySelector('.theme-toggle');
+const themeIcon = document.querySelector('.theme-icon');
+
+function setTheme(theme) {
+  root.dataset.theme = theme;
+  themeIcon.textContent = theme === 'dark' ? '☀' : '☾';
+  themeButton.setAttribute('aria-label', theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro');
+}
+
+setTheme(localStorage.getItem('portfolio-theme') || 'dark');
+themeButton.addEventListener('click', () => {
+  const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  setTheme(nextTheme);
+  localStorage.setItem('portfolio-theme', nextTheme);
+});
+
 const menuButton = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.nav-menu');
 menuButton.addEventListener('click', () => {

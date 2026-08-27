@@ -1,21 +1,3 @@
-const root = document.documentElement;
-const themeButton = document.querySelector('.theme-toggle');
-const themeIcon = document.querySelector('.theme-icon');
-const savedTheme = localStorage.getItem('portfolio-theme');
-const preferredLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-
-function setTheme(theme) {
-  root.dataset.theme = theme;
-  themeIcon.textContent = theme === 'dark' ? '☀' : '☾';
-  themeButton.setAttribute('aria-label', theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro');
-}
-setTheme(savedTheme || (preferredLight ? 'light' : 'dark'));
-themeButton.addEventListener('click', () => {
-  const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-  setTheme(next);
-  localStorage.setItem('portfolio-theme', next);
-});
-
 const menuButton = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.nav-menu');
 menuButton.addEventListener('click', () => {
